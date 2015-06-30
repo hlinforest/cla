@@ -2,26 +2,27 @@ require 'pry'
 class Contact
   class RecordNotFoundError < StandardError
   end
-  attr_accessor :name, :email, :id
+  attr_accessor :name, :email, :id, :phone_number
   @@contacts = []
   @@ids = 0
-  def initialize(id, name, email)
+  def initialize(id, name, email, phone_number = {})
     # TODO: assign local variables to instance variables
     @id = id
     @name = name
     @email = email
+    @phone_number = phone_number
 
   end
  
   def to_s
     # TODO: return string representation of Contact
   end
- 
+  
   ## Class Methods
   class << self
-    def create(name, email)
+    def create(name, email, phone_number)
       @@ids += 1
-      @@contacts << Contact.new(@@ids, name, email)
+      @@contacts << Contact.new(@@ids, name, email, phone_number)
       @@contacts.last
       #binding.pry
       # TODO: Will initialize a contact as well as add it to the list of contacts

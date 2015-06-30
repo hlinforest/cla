@@ -4,12 +4,12 @@ require_relative 'contact'
 
 class ContactDatabase
 
-  attr_accessor :name, :email
+  attr_accessor :name, :email, :phone_number
 
   class << self
     def write(temp_object)
       CSV.open("contacts.csv", "a+") do |csv|
-        csv << [temp_object.id, temp_object.name, temp_object.email]
+        csv << [temp_object.id, temp_object.name, temp_object.email, temp_object.phone_number]
       end
     end
     # CSV.foreach('contacts.csv') do |csv|
@@ -26,7 +26,8 @@ class ContactDatabase
       CSV.foreach("contacts.csv") do |csv|
         name = csv[1]
         email = csv[2]
-        Contact.create(name, email)
+        phone_number = csv[3]
+        Contact.create(name, email, phone_number)
         #Contact.id = csv[0]
 
       end

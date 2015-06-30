@@ -21,18 +21,42 @@ def new_contact
   input1 = STDIN.gets.chomp
   #binding.pry
   temp_dupe = Contact.check_duplicate?(input1, input2)
-  binding.pry
+  #binding.pry
   if temp_dupe != nil
     puts "Error: record already exists"
   else
-    a_contact = Contact.create(input1, input2)
+    #a_contact = Contact.create(input1, input2)
+    temp_phone_list = {}
+    while true 
+      puts "Enter phone type: "
+      input3 = STDIN.gets.chomp
+      puts "Enter phone number: "
+      input4 = STDIN.gets.chomp
+      input3_to_sym = input3.to_sym
+      if temp_phone_list.has_key?(input3.to_sym) == false
+        temp_phone_list[input3_to_sym] = []
+        temp_phone_list[input3_to_sym] << input4
+        #binding.pry
+      else
+        temp_phone_list[input3_to_sym] << input4
+        #binding.pry
+      end
+      puts "Press any key to continue, quit to QUIT"
+      input5 = STDIN.gets.chomp
+      break if input5.eql?("quit")
+      #input3.to_sym
+      #if a_contact.phone_number.has_key?(input3) == false
+      # a_contact.phone_number[]
+      #binding.pry
+      
+    end
+    a_contact = Contact.create(input1, input2, temp_phone_list)
     ContactDatabase.write(a_contact)
   end
 
 end
 
-#a = Contact.create("stark", "abc@abc.com")
-#b = Contact.create("bjerg", "bjerg@tsm.gg")
+
 #binding.pry
 a = ContactDatabase.read
 #binding.pry

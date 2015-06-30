@@ -3,3 +3,6 @@
 3,Soren Bjerg,bjerg@tsm.gg
 4,Marcus Hill,dyrus@tsm.gg
 5,Bora Kim,yellowstar@fnatic.gg
+6,wtf,wtf@wtf.com,"{:input3=>""123-456-7890""}"
+7,pipboy,test@test.com,"{:mobile=>""111-222-3333""}"
+8,Mitch Voorspel,krepo@riot.com,"{:home=>[""123-456-7890"", ""000-000-0001""], :work=>[""456-234-1235"", ""098-765-4321""]}"
