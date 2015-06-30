@@ -20,9 +20,14 @@ def new_contact
   puts "Enter name: "
   input1 = STDIN.gets.chomp
   #binding.pry
-  a_contact = Contact.create(input1, input2)
-  ContactDatabase.write(a_contact)
-
+  temp_dupe = Contact.check_duplicate?(input1, input2)
+  binding.pry
+  if temp_dupe != nil
+    puts "Error: record already exists"
+  else
+    a_contact = Contact.create(input1, input2)
+    ContactDatabase.write(a_contact)
+  end
 
 end
 
@@ -50,6 +55,14 @@ when temp1.eql?("show") && temp2 =~ (/\d+/)
   temp5 = Contact.show(temp2)
   puts "#{temp5.name}"
   puts "#{temp5.email}"
+when temp1.eql?("find") && temp2 =~ (/\w+/)
+  #binding.pry
+  temp6 = Contact.find(temp2)
+  temp6.each do |temp7|
+    puts "#{temp7.name}"
+    puts "#{temp7.email}"
+    #binding.pry
+  end
 else
   #binding.pry
   puts "Error: wrong command"
